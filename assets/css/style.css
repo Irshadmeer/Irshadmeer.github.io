@@ -1,0 +1,391 @@
+/* =========================
+   Variables
+   ========================= */
+:root {
+  --green: #2f6f3e;
+  --green-hover: #255a32;
+  --text: #2b2b2b;
+  --muted: #666;
+  --bg: #fff;
+  --border: #e2e2e2;
+}
+
+/* =========================
+   Reset
+   ========================= */
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Source Serif Pro", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  overflow-x: hidden;
+}
+
+/* =========================
+   GRID CONTAINER (KEY FIX)
+   ========================= */
+.grid-container {
+  max-width: 1300px;
+  margin: 24px auto;
+  padding: 0 32px 40px;
+
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "menu  menu"
+    "about main";
+  column-gap: 72px;
+}
+
+/* =========================
+   Grid placement (CRITICAL)
+   ========================= */
+.grid-menu   { grid-area: menu; }
+.grid-about  { grid-area: about; }
+.grid-main   { grid-area: main; }
+
+/* =========================
+   Header Affiliations
+   ========================= */
+.header-affiliations {
+  text-align: center;
+  margin-bottom: 32px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.header-affiliations h3 {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin: 0 0 15px 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.header-affiliations .affiliations {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 30px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.header-affiliations .affiliations img {
+  height: 100px;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.header-affiliations .affiliations img:hover {
+  opacity: 1;
+}
+
+/* =========================
+   Top menu
+   ========================= */
+.grid-menu {
+  margin-bottom: 32px;
+}
+
+.menubar {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 26px;
+  padding: 0;
+  margin: 0;
+}
+
+.menubar a {
+  color: var(--green);
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.menubar a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Left column
+   ========================= */
+.grid-about {
+  text-align: center;
+  min-width: 0;
+}
+
+.portrait {
+  width: 180px;
+  max-width: 100%;
+  margin-bottom: 18px;
+}
+
+#title {
+  margin: 0;
+  font-size: 1.9rem;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.5px;
+  overflow-wrap: anywhere;
+}
+
+#title a {
+  color: var(--green);
+  text-decoration: none;
+}
+
+.tagline {
+  margin: 4px 0 18px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* Logos */
+.affiliations {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin-bottom: 18px;
+}
+
+.affiliations img {
+  height: 32px;
+  opacity: 0.85;
+}
+
+/* Social icons */
+.social {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.social a {
+  color: var(--green);
+  font-size: 1.6rem;
+}
+
+/* =========================
+   Main content
+   ========================= */
+.grid-main h2 {
+  color: var(--green);
+  font-size: 1.5rem;
+  margin: 2rem 0 0.4rem;
+}
+
+.grid-main hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0 0 1rem;
+}
+
+.grid-main ul {
+  margin-left: 1.2rem;
+}
+
+.grid-main li + li {
+  margin-top: 0.35rem;
+}
+
+.publications li + li {
+  margin-top: 1rem;
+}
+
+/* =========================
+   Links
+   ========================= */
+a {
+  color: var(--green);
+}
+
+a:hover {
+  color: var(--green-hover);
+}
+
+/* =========================
+   Responsive
+   ========================= */
+@media (max-width: 900px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "menu"
+      "about"
+      "main";
+    column-gap: 0;
+    row-gap: 10px;
+  }
+
+  .grid-main {
+    max-width: 720px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 16px;
+  }
+
+  .grid-container {
+    margin: 16px auto;
+    padding: 0 18px 32px;
+  }
+
+  .grid-menu {
+    margin-bottom: 24px;
+  }
+
+  .menubar {
+    gap: 8px 16px;
+    justify-content: flex-start;
+  }
+
+  .menubar a {
+    font-size: 1rem;
+  }
+
+  .portrait {
+    width: 132px;
+  }
+
+  #title {
+    font-size: 1.65rem;
+  }
+
+  .social {
+    gap: 12px;
+  }
+
+  .social a {
+    font-size: 1.45rem;
+  }
+
+  .header-affiliations {
+    margin-bottom: 20px;
+    padding: 16px 0;
+  }
+
+  .header-affiliations .affiliations {
+    max-width: 310px;
+    gap: 10px 16px;
+  }
+
+  .header-affiliations .affiliations img {
+    height: 58px;
+    max-width: 128px;
+    object-fit: contain;
+  }
+
+  .grid-main h2 {
+    font-size: 1.35rem;
+    margin-top: 1.6rem;
+  }
+
+  .grid-main ul,
+  .grid-main ol {
+    padding-left: 1.2rem;
+    margin-left: 0;
+  }
+
+  footer {
+    padding: 32px 18px;
+  }
+
+  footer .affiliations {
+    gap: 24px 28px;
+  }
+
+  footer .affiliations img {
+    height: 46px;
+    max-width: 110px;
+    object-fit: contain;
+  }
+}
+
+/* =========================
+   Footer
+   ========================= */
+footer {
+  margin-top: 60px;
+  padding: 40px 32px;
+  background: #f9f9f9;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+footer .affiliations {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px 60px;
+  margin: 0 auto 20px;
+}
+
+footer .affiliations img {
+  height: 70px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+footer .affiliations a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  text-align: center;
+}
+
+footer .affiliations a:hover img {
+  opacity: 0.8;
+}
+
+footer .affiliations a span {
+  font-size: 0.85rem;
+  margin-top: 8px;
+  color: var(--text);
+}
+
+footer p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* =========================
+   Active menu item (reference style)
+   ========================= */
+.menubar .navigation.active a {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.menubar .navigation.active a:hover {
+  text-decoration: underline;
+}
+/* =========================
+   FIX: Academicons font
+   ========================= */
+.ai {
+  font-family: "Academicons" !important;
+  font-style: normal;
+  font-weight: normal;
+}

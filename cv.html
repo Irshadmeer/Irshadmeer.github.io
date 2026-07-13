@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>Irshad A. Meer - CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"/>
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/academicons@1.9.4/css/academicons.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <style>
+    #pdf-container {
+      max-width: 100%;
+      margin: 20px 0;
+    }
+    #pdf-viewer {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: #f5f5f5;
+      padding: 10px;
+    }
+    #pdf-canvas {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+    .pdf-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin: 15px 0;
+      flex-wrap: wrap;
+    }
+    .pdf-controls button {
+      padding: 8px 12px;
+      background-color: #2f6f3e;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .pdf-controls button:hover {
+      background-color: #245a31;
+    }
+    .pdf-controls button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    .pdf-info {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+
+</head>
+<body>
+<div class="grid-container">
+<nav class="grid-menu">
+<ul class="menubar">
+<li class="navigation"><a href="/">About</a></li>
+<li class="navigation"><a href="/publications.html">Publications</a></li>
+<li class="navigation"><a href="/teaching.html">Teaching</a></li>
+<li class="navigation"><a href="/activity.html">Professional Activities</a></li>
+<li class="navigation"><a href="/software.html">Software</a></li>
+<li class="navigation active"><a href="/cv.html">CV</a></li>
+</ul>
+</nav>
+<aside class="grid-about">
+  <img class="portrait" src="/assets/portrait.png" alt="Headshot of Irshad A. Meer">
+  <h2 id="title"><a href="/">Irshad A. Meer</a></h2>
+  <p class="tagline">Postdoctoral Researcher @ KTH</p>
+   <ul class="social">
+    <li><a href="https://www.kth.se/profile/iameer?l=en" title="KTH profile"><i class="fas fa-university"></i></a></li>
+    <li><a href="https://scholar.google.com/citations?user=svDQ3yAAAAAJ&hl=en" title="Google Scholar"><i class="ai ai-google-scholar-square"></i></a></li>
+    <li><a href="https://orcid.org/0000-0001-5298-7490" title="ORCID"><i class="ai ai-orcid"></i></a></li>
+    <li><a href="https://github.com/Irshadmeer" title="GitHub"><i class="fab fa-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/irshadmeer" title="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+    <li><a href="mailto:iameer@kth.se" title="Email"><i class="fas fa-envelope"></i></a></li>
+  </ul>
+ 
+  <hr>
+
+  <div class="header-affiliations">
+  <h3>Education</h3>
+  <div class="affiliations" aria-label="Affiliations">
+    <img src="/assets/logos/kth_logo.png" alt="KTH Royal Institute of Technology">
+    <img src="/assets/logos/princeton_logo.png" alt="Princeton University">
+    <img src="/assets/logos/nit_logos.png" alt="NIT Srinagar">
+    <img src="/assets/logos/polimi_logo.png" alt="Politecnico di Milano">
+  </div>
+</div>
+</aside>
+<main class="grid-main">
+<h2 id="cv">Curriculum Vitae</h2>
+<hr>
+<div style="margin-bottom: 20px;">
+  <a href="/assets/cv_irshad.pdf" download class="btn-download" style="display: inline-block; padding: 10px 20px; background-color: #2f6f3e; color: white; text-decoration: none; border-radius: 4px; font-weight: 500;">Download CV</a>
+</div>
+
+<div id="pdf-container">
+  <div id="pdf-viewer">
+    <canvas id="pdf-canvas"></canvas>
+  </div>
+  <div class="pdf-controls">
+    <button id="prev-btn" onclick="prevPage()">← Previous</button>
+    <div class="pdf-info">
+      <span>Page <span id="current-page">1</span> of <span id="total-pages">0</span></span>
+    </div>
+    <button id="next-btn" onclick="nextPage()">Next →</button>
+  </div>
+</div>
+
+<script>
+  pdfjsLib.getDocument('/assets/cv_irshad.pdf').promise.then(pdf => {
+    let currentPage = 1;
+    const totalPages = pdf.numPages;
+    document.getElementById('total-pages').textContent = totalPages;
+
+    function renderPage(pageNum) {
+      pdf.getPage(pageNum).then(page => {
+        const scale = window.innerWidth > 900 ? 1.5 : 1;
+        const viewport = page.getViewport({ scale: scale });
+        const canvas = document.getElementById('pdf-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+
+        page.render({
+          canvasContext: ctx,
+          viewport: viewport
+        }).promise.then(() => {
+          document.getElementById('current-page').textContent = pageNum;
+          document.getElementById('prev-btn').disabled = pageNum === 1;
+          document.getElementById('next-btn').disabled = pageNum === totalPages;
+        });
+      });
+    }
+
+    window.nextPage = function() {
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderPage(currentPage);
+      }
+    };
+
+    window.prevPage = function() {
+      if (currentPage > 1) {
+        currentPage--;
+        renderPage(currentPage);
+      }
+    };
+
+    renderPage(currentPage);
+  }).catch(error => {
+    document.getElementById('pdf-container').innerHTML = 
+      '<p style="color: red; text-align: center;">Unable to load PDF. <a href="/assets/cv_irshad.pdf" download>Download CV</a> instead.</p>';
+    console.error('PDF loading error:', error);
+  });
+</script>
+</main>
+</div>
+<footer>
+  <div class="affiliations" aria-label="Research Collaborators">
+    <a href="https://www.ericsson.com/" title="Ericsson">
+      <img src="/assets/logos/ericsson_logo.png" alt="Ericsson">
+      <span>Ericsson</span>
+    </a>
+    <a href="https://www.airbus.com/" title="Airbus">
+      <img src="/assets/logos/airbus_logo.png" alt="Airbus">
+      <span>Airbus</span>
+    </a>
+    <a href="https://www.skysense.aero/" title="Skysense">
+      <img src="/assets/logos/skysense_logo.png" alt="Skysense">
+      <span>Skysense</span>
+    </a>
+    <a href="https://www.motious.de/" title="Motious">
+      <img src="/assets/logos/motious_logo.png" alt="Motious">
+      <span>Motious</span>
+    </a>
+    <a href="https://www.aau.dk/" title="Aalborg University">
+      <img src="/assets/logos/aalborg_logo.png" alt="Aalborg University">
+      <span>Aalborg University</span>
+    </a>
+    <a href="https://www.tele2.com/" title="Tele2">
+      <img src="/assets/logos/tele2_logo.png" alt="Tele2">
+      <span>Tele2</span>
+    </a>
+  </div>
+  <p>Research collaborators and industry partners in my scientific work</p>
+</footer>
+</body>
+</html>

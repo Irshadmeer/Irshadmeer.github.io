@@ -1,0 +1,250 @@
+/* =========================================================
+   Global design system
+   ========================================================= */
+
+:root {
+  --accent: #1a4f8b;
+  --text-main: #222;
+  --text-muted: #666;
+  --bg-main: #fafafa;
+  --bg-panel: #ffffff;
+  --border-soft: #e3e3e3;
+}
+
+/* =========================================================
+   Base reset
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-main);
+  background: var(--bg-main);
+}
+
+/* =========================================================
+   Links & selection
+   ========================================================= */
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* =========================================================
+   Layout grid
+   ========================================================= */
+
+.grid-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+
+  display: grid;
+  grid-template-areas:
+    "menu menu"
+    "about main";
+  grid-template-columns: 280px 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .grid-container {
+    grid-template-areas:
+      "menu"
+      "main"
+      "about";
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   Navigation bar
+   ========================================================= */
+
+.grid-menu {
+  grid-area: menu;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.grid-menu .menubar {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem 0;
+}
+
+.grid-menu .menubar li {
+  margin: 0 1.2rem;
+}
+
+.grid-menu .menubar a {
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.grid-menu .menubar .active a {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+/* =========================================================
+   Sidebar / identity block
+   ========================================================= */
+
+.grid-about {
+  grid-area: about;
+  background: var(--bg-panel);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border: 1px solid var(--border-soft);
+}
+
+.grid-about img.portrait {
+  max-width: 160px;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+/* Name */
+.grid-about h2#title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0.5rem 0 0.2rem;
+}
+
+.grid-about h2#title a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* Tagline */
+.grid-about .tagline {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 1.4rem;
+}
+
+/* Social icons */
+.grid-about .social {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.grid-about .social li {
+  display: inline-block;
+  margin: 0 0.4rem;
+}
+
+.grid-about .social a {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+}
+
+.grid-about .social a:hover {
+  color: var(--accent);
+}
+
+.grid-about p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* =========================================================
+   Main content area
+   ========================================================= */
+
+.grid-main {
+  grid-area: main;
+  background: var(--bg-panel);
+  padding: 2rem;
+  border: 1px solid var(--border-soft);
+}
+
+/* =========================================================
+   Section headers (Bio, Publications, etc.)
+   ========================================================= */
+
+.grid-main h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.grid-main hr {
+  border: none;
+  border-top: 1px solid var(--border-soft);
+  margin-bottom: 1.5rem;
+}
+
+/* =========================================================
+   Publications
+   ========================================================= */
+
+.publications {
+  list-style: decimal;
+  padding-left: 1.2rem;
+}
+
+.publications li {
+  margin-bottom: 1.3rem;
+}
+
+.publications .pub-title {
+  font-weight: 600;
+}
+
+.publications .pub-meta {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.pub-links {
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.pub-links a {
+  margin-right: 0.6rem;
+}
+
+/* =========================================================
+   Utility
+   ========================================================= */
+
+.hidden {
+  display: none;
+}
+
+
+/* Accent color unification — SAFE */
+.grid-about h2#title a,
+.grid-menu .menubar .active a,
+.grid-main h2 {
+  color: var(--accent);
+}
