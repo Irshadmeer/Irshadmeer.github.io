@@ -1,17 +1,27 @@
-# Irshad A. Meer — Academic Website (KLB-style)
+# Irshad A. Meer — Academic Website
 
-This is a static website (HTML/CSS) with the same styling approach as https://klb2.gitlab.io/.
+This repository contains the source code for my personal academic website. The site presents my research, publications, professional experience, and recent activities in artificial intelligence, wireless communications, and next-generation networks.
 
-To keep the ZIP lightweight, the fonts/icons are loaded from the original site's asset URLs.
-(When you're happy, we can vendor the font files locally too.)
+The website is built as a lightweight static site using HTML and CSS, making it easy to maintain, customize, and deploy.
 
-## Quick local test
-- Python:
-  - `python3 -m http.server 8000`
-  - open http://localhost:8000
+## Run Locally
 
-## Personalization checklist
-- Replace `/assets/portrait.jpg` with your headshot (keep the filename).
-- Update social links in all pages (search for `href="#"`).
-- Replace `irshad@example.com` with your email.
-- Fill publications and news.
+Start a local web server from the project directory:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then open:
+
+```text
+http://localhost:8000
+```
+
+## Before Publishing
+
+* Add your headshot as `/assets/portrait.jpg`.
+* Verify the email address and social-profile links.
+* Update the publications, research, and news sections.
+* Check that all project and paper links are correct.
+* Review the website on both desktop and mobile devices.
