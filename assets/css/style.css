@@ -181,6 +181,21 @@ body {
   font-size: 1.6rem;
 }
 
+.scholar-icon {
+  align-items: center;
+  border: 2px solid currentColor;
+  border-radius: 4px;
+  display: inline-flex;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 0.72em;
+  font-weight: 700;
+  height: 1.05em;
+  justify-content: center;
+  line-height: 1;
+  transform: translateY(-0.04em);
+  width: 1.05em;
+}
+
 /* =========================
    Main content
    ========================= */
