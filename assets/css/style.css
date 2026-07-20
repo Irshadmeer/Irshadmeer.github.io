@@ -33,17 +33,17 @@ body {
    GRID CONTAINER (KEY FIX)
    ========================= */
 .grid-container {
-  max-width: 1300px;
+  width: min(94vw, 1600px);
   margin: 24px auto;
-  padding: 0 32px 40px;
+  padding: 0 40px 40px;
 
   display: grid;
-  grid-template-columns: 280px minmax(0, 1fr);
+  grid-template-columns: 320px minmax(0, 1fr);
   grid-template-rows: auto 1fr;
   grid-template-areas:
     "menu  menu"
     "about main";
-  column-gap: 72px;
+  column-gap: 64px;
 }
 
 /* =========================
